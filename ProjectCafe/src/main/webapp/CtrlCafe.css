@@ -1,0 +1,55 @@
+@charset "EUC-KR";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+table.bound {
+    border-collapse: collapse;
+    border:1px solid #343a40;
+    height:340px;
+    width:340px;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+td.bound{
+    border:1px solid #343a40;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+#selMenu, #selMenu1,#selOrder,#selSales{
+    width:300px;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+#SalesMenu,#SalesMob{
+    width:240px;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+caption{
+    color:#ced4da; 
+    text-decoration:underline;
+    background-color: #495057;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+option:checked {
+    background-color:gray linear-gradient(0deg, gray 0%, gray 100%);
+    font-family: 'Gowun Dodum', sans-serif;
+}
+.w-btn-outline {
+	font-family: 'Gowun Dodum', sans-serif;
+    position: relative;
+    padding: 5px 5px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.w-btn-gray {
+    background-color: #a3a1a1;
+    color: #e3dede;
+}
+.w-btn-gray-outline {
+    border: 3px solid #a3a1a1;
+    color: darkgray;
+}
+.w-btn-gray-outline:hover {
+    background-color: #a3a1a1;
+    color: #e3dede;
+}
