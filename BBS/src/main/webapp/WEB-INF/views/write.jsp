@@ -14,6 +14,7 @@
 	}
 </style>
 <body>
+<!-- $.ajax(url:'/modify', data:{post_id:$('#post_id').val(),title=$('#title').val(),name=$('#name').val(),content=$('#content').val()}) -->
 <form method=post action="/ncs7/write" id=frmWrite>
 	<table style="border-collapse:collapse;">
 		<tr>

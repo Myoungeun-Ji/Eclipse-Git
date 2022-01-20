@@ -48,7 +48,7 @@
 	})
 	.on('click','#btnDelete',function(){
 		if(confirm('글을 삭제하시겠습니까? (다시 불러올 수 없습니다.)')){
-			document.location="/ncs7/delete?id="+$('#post_id').val();			
+			document.location="/ncs7/delete?id="+$('#post_id').val();	// url: '/delete',data:{id$('#post_id')}
 		}
 		return false;
 	})
