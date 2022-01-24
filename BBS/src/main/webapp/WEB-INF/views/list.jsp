@@ -34,6 +34,8 @@ body { color:#009933; }
 			</c:forEach>
 		</tbody>
 	
+	
+	
 	</table>
 	<input type=button value='게시글 작성' onclick='document.location="/ncs7/compose"'>
 </body>

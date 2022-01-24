@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- sql -->
 
-<mapper namespace="com.human.cafe.iCafe">
+<mapper namespace="com.human.cafe.iCafe"> <!-- class이름 -->  
 <select id="getMenuList" resultType="com.human.cafe.Menu">
-	select code, name, price from menu order by code
+   select code,name,price from menu order by code
+</select>
+<insert id="insertMenu">
+   insert into menu values(seq_menucode.nextval,#{param1},#{param2})
+</insert>
+<update id="updateMenu"> <!-- 인터페이스인 iCafe.java의 param 순서대로 -->
+   update menu set name=#{param2},price=#{param3} where code=#{param1}
+</update>
+<delete id="deleteMenu">
+   delete from menu where code=#{param1}
+</delete>
+<insert id="insertSales">
+	insert into cafe_sales(code, menu_code, qty, total, sold_time, mobile) values 
+	(seq_code.nextval, #{param1}, #{param2},#{param3}, to_char(sysdate,'YYYYMMDDHHMI'),#{param4})
+</insert>
+<select id="getSales" resultType="com.human.cafe.Cafe_sales">
+	select a.mobile, b.name, a.qty, a.total, a.sold_time 
+	from cafe_sales a, menu b
+	where a.menu_code=b.code
+	order by a.sold_time desc 
+<!-- select는 resultType이 필수임 / select 하나 당 DTO 하나가 필요함-->
+</select>
+<select id="salesMenu" resultType="com.human.cafe.Sales">
+	select b.name, sum(a.total) as total
+	from cafe_sales a, menu b
+	where a.menu_code=b.code
+	group by b.name
+	order by b.name
+</select>
+<select id="salesMobile" resultType="com.human.cafe.Sales">
+	select mobile as name, sum(total) as total from cafe_sales
+	group by mobile order by mobile
 </select>
 </mapper>
