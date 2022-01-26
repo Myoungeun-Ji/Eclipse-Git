@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- sql -->
+
+<mapper namespace="com.human.exam.iExam"> <!-- class이름 -->  
+<insert id="DoSignon">
+	insert into members(name,gender,userid,passcode,interest)
+	values(#{param1},#{param2},#{param3},#{param4},#{param5})
+</insert>
+<select id="Signon_check" resultType="com.human.exam.Member">
+	select userid,passcode
+	from members
+</select>
+<update id="update">
+	update members set login_time=to_char(sysdate,'YYYYMMDDHHMI') where userid=#{param1}
+</update>
+<update id="update1">
+	update members set logout_time=to_char(sysdate,'YYYYMMDDHHMI') where userid=#{param1}
+</update>
+	
+</mapper>
