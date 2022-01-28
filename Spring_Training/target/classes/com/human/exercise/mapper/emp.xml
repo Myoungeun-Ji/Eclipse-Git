@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.human.exercise.iEmp"><!-- 네임스페이스 : 인터페이스 이름 -->
+    <select id="getEmpList" resultType="com.human.exercise.Employee"><!-- 설렉트 id=메소드이름 리절트타입=DTO 설렉트는 꼭 DTO 있어야됨 DTO에 담겨있는 필드랑 Employee.java에 들어있는 필드의 갯수랑 정확히 일치해야함 java가 더 적은건O, but 많으면 X-->
+    	select employee_id, emp_name, email, phone_number,hire_date,salary
+    	from employees
+    	order by employee_id
+    </select>
+    <insert id="addMenu">
+    	insert into menu(code, name, price) 
+    	values(seq_code.nextval, #{param1},#{param2})
+    </insert>
+    </mapper>
