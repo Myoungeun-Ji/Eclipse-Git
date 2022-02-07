@@ -10,7 +10,7 @@
 <form action="/exercise/addMenu" id="frmAddMenu">
 	메뉴명 : <input type=text name=menu_name><br>
 	가격 : <input type=number name=price><br>
-	<input type=submit value="추가">
+			<input type=submit value="추가">
 
 </form>
 </body>

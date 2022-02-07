@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.human.exercise.iAddRoom"><!-- 네임스페이스 : 인터페이스 이름 -->
+    <select id="getRoomList" resultType="com.human.exercise.room">
+    	select a.roomcode as code, a.name as name, b.typename as t_name, a.howmany as price, a.howmuch as people
+		from room a, roomtype b
+		where a.type=b.typecode
+		order by roomcode
+    </select>
+    <insert id="addRoom">
+    	insert into room(roomcode, name, type, howmany, howmuch) 
+    	values(seq_room.nextval, #{param1},#{param2},#{param3},#{param4})
+    </insert>
+    </mapper>

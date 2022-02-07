@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.exercise.iEmp">
+<select id="getEmpList" resultType="com.human.exercise.Employee"> <!-- select는 항상 id="(인터페이스 안에 메소드이름)" resultType="(DTO)" 둘다 써줘야 함. -->
+	select employee_id, emp_name, email, phone_number, hire_date, salary
+	  from employees
+	 order by employee_id
+</select>
+<select id="getCountryList" resultType="com.human.exercise.Countries">
+	select country_id, country_iso_code, country_name, country_region
+	from countries
+</select>
+<select id="getDepList" resultType="com.human.exercise.Departments">
+	select a.department_id, b.department_name as upperdep,
+	a.department_name as lowerdep, c.emp_name as manager_name 
+	from departments a, departments b, employees c
+	where a.parent_id=b.department_id(+) and a.manager_id=c.employee_id(+)
+</select>
+<insert id="addMenu"> <!-- camel notation 낙타표기법 - 소문자로 시작해서 새로운 단어마다 대문자시작 -->
+	insert into menu(code,name,price) values(seq_menu.nextval,#{param1},#{param2})
+</insert>
+<select id="getMenuList" resultType="com.human.exercise.Menu">
+	select code, name, price from menu
+</select>
+<update id="updateMenu">
+	update menu set name=#{param2}, price=#{param3} where code=#{param1}
+</update>
+<delete id="deleteMenu">
+	delete from menu where code=#{param1}
+</delete>
+<insert id="addRoom">
+	insert into room(roomcode, name, type, howmany, howmuch) values(seq_room.nextval,#{param1},#{param2},#{param3},#{param4})
+</insert>
+<insert id="addType">
+	insert into roomtype(typecode, typename) values(#{param1},#{param2})
+</insert>
+<select id="getRoomList" resultType="com.human.exercise.Room">
+    select a.roomcode, a.name, b.typename, a.howmany, a.howmuch
+	from room a, roomtype b
+	where a.type=b.typecode(+)
+</select>
+<select id="getRoomType" resultType="com.human.exercise.Roomtype">
+	select typecode, typename from roomtype order by typecode
+</select>
+<delete id="deleteRoom">
+	delete from room where roomcode=#{param1}
+</delete>
+<update id="updateRoom">
+	update room set name=#{param2}, type=#{param3}, howmany=#{param4}, howmuch=#{param5} where roomcode=#{param1}
+</update>
+</mapper>
+

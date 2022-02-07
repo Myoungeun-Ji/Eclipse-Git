@@ -18,6 +18,51 @@ public class MyController {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	@RequestMapping("/room")
+	public String doRoom(Model m) {
+		iAddRoom Room=sqlSession.getMapper(iAddRoom.class);
+		ArrayList<room> room=Room.getRoomList();
+		System.out.println("size["+room.size()+"]");
+		m.addAttribute("alroom",room);
+		return "addRoom";
+	}
+	@RequestMapping("/type")
+	public String doRoomtype() {
+		return"RoomType";
+	}
+	
+	@RequestMapping("/typeadd")
+	public String doRoomtype(HttpServletRequest hsr) {
+		int typecode=Integer.parseInt(hsr.getParameter("typecode"));
+		String typename= hsr.getParameter("typename");
+		System.out.println("타입코드 : "+typecode+"타입명 : "+typename);
+		
+		iRoomType type=sqlSession.getMapper(iRoomType.class);
+		type.typeadd(typecode,typename);
+		
+		return"RoomType";
+	}
+	
+	@RequestMapping("/roomadd") //addMenu.jsp 보여주기 위한 애
+	public String doAddRoom() {
+		
+		return "addRoom";
+	}
+	
+	@RequestMapping("/addRoom")
+		public String doAddRoom(HttpServletRequest hsr) {
+		String name= hsr.getParameter("roomname"); //파란글씨 jsp의 name과 일치하게
+		int roomtype=Integer.parseInt(hsr.getParameter("roomtype"));
+		int howmany=Integer.parseInt(hsr.getParameter("howmany"));
+		int howmuch=Integer.parseInt(hsr.getParameter("howmuch"));
+		System.out.println("객실명 : "+name+"타입 : "+roomtype+"숙박가능인원 : "+howmany+"숙박비 : "+howmuch);
+		
+		//여기부터는 db연동부분
+		iAddRoom room=sqlSession.getMapper(iAddRoom.class);
+		room.addRoom(name,roomtype,howmany,howmuch); //jsp에 쓴 순서 맞춰서 쓰기
+		return "redirect:/room";
+	}
 	@RequestMapping("/menuadd") //addMenu.jsp 보여주기 위한 애
 	public String doMenuAdd() {
 		return "addMenu";

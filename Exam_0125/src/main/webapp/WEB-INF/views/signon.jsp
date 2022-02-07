@@ -20,7 +20,8 @@ td { border:1px solid blue;}
     <td align=right>성별:</td><td><input type=radio name=gender id=gender value=남성>남성&nbsp;
             <input type=radio name=gender id=gender value=여성>여성</td>
 </tr>
-<tr><td align=right>아이디:</td><td><input type=text name=userid id=userid></td></tr>
+<tr><td align=right>아이디:</td><td><input type=text name=userid id=userid></td>
+<td><input type=button value=중복체크 name=btncheck></td></tr>
 <tr><td align=right>비밀번호:</td><td><input type=password name=passcode id=passcode></td>
     <td align=right>비밀번호 확인:</td><td><input type=password name=passcode1 id=passcode1></td></tr>
 <tr><td valign=top>관심분야:</td>
@@ -46,6 +47,12 @@ td { border:1px solid blue;}
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
  $(document) 
+ .on('click','#btncheck',function(){
+	 
+	 $.post("/exam/checkid",{userid :$('#userid').val()},function(txt){
+		 if()
+	})
+ })
  .on('click','#btnCancel',function(){ 
  	document.location='/exam/'; //stop bubbling effect 
  	return false; 

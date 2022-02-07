@@ -3,12 +3,13 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- sql -->
 
 <mapper namespace="com.human.exam.iExam"> <!-- class이름 -->  
+
 <insert id="DoSignon">
 	insert into members(name,gender,userid,passcode,interest)
 	values(#{param1},#{param2},#{param3},#{param4},#{param5})
 </insert>
 <select id="Signon_check" resultType="com.human.exam.Member">
-	select userid,passcode
+	select userid
 	from members
 </select>
 <update id="update">
